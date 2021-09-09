@@ -39,8 +39,8 @@ springboot-example
     │  │            │      ├─event               --事件
     │  │            │      │  ├─publish            --事件发布
     │  │            │      │  └─subscribe          --事件订阅          
-    │  │            │      ├─exception             --子模块异常
-    │  │            │      ├─manager               --子模块通用业务逻辑
+    │  │            │      ├─exception           --子模块异常
+    │  │            │      ├─manager             --子模块通用业务逻辑
     │  │            │      ├─model               --领域模型
     │  │            │      │  ├─bo                 --子模块业务对象
     │  │            │      │  ├─constant           --子模块常量
@@ -83,7 +83,7 @@ springboot-example
         └─java
             └─com
                 ├─dohko
-                │  └─example
+                  └─example
                
 ```
 
