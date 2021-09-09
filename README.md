@@ -87,4 +87,62 @@ springboot-example
                
 ```
 
+### 使用说明
 
+1. 创建test数据库，执行resources\static\sql下的建表语句
+
+```sql
+DROP TABLE IF EXISTS `t_user_info`;
+CREATE TABLE `t_user_info` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
+  `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '盐值',
+  `state` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态：0-停用；1-正常',
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '昵称',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否已删除：0-否；1-是',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息';
+```
+
+2. 默认端口9090，可在配置文件自行修改，启动应用
+
+3. 访问接口
+```shell script
+1) 注册用户接口
+ 
+http://localhost:9090/register
+
+请求体
+{
+	"username":"yekai",
+	"password":"e10adc3949ba59abbe56e057f20f883e",
+	"nickname":"叶开"
+}
+
+
+2) 用户登录接口
+ 
+http://localhost:9090/login
+
+请求体
+{
+	"username":"yekai",
+	"password":"e10adc3949ba59abbe56e057f20f883e"
+}
+
+3) 用户信息分页查询接口
+
+http://localhost:9090/user-info/page-query
+
+请求体
+{
+	"current":1,
+	"size":10
+}
+
+
+```
