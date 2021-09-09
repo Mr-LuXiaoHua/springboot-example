@@ -56,7 +56,7 @@ springboot-example
     │  │                │  ├─aop                 --全局aop
     │  │                │  ├─exception           --全局异常
     │  │                │  ├─handler             --全局处理器
-    │  │                │  ├─interceptor         --全局异常
+    │  │                │  ├─interceptor         --全局拦截器
     │  │                │  └─model               --全局领域模型
     │  │                │      ├─constant          --全局常量
     │  │                │      ├─entity            
