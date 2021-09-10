@@ -19,7 +19,8 @@
 * controller方法执行耗时打印
 * 请求参数Validation
 * 多环境变量配置
-* 整合了layui
+* 整合springboot session
+
 
 
 ### 项目包结构
@@ -107,10 +108,11 @@ CREATE TABLE `t_user_info` (
   UNIQUE KEY `uk_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息';
 ```
+2. 配置redis
 
-2. 默认端口9090，可在配置文件自行修改，启动应用
+3. 默认端口9090，可在配置文件自行修改，启动应用
 
-3. 访问接口
+4. 访问接口
 ```shell script
 1) 注册用户接口
  

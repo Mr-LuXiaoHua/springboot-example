@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author luxiaohua
@@ -20,9 +22,12 @@ public class MyInterceptorConfig implements WebMvcConfigurer {
     private MyInterceptor myInterceptor;
 
 
+    private static final List<String> excludePathPatternList = Arrays.asList("/login", "/static/**", "/error");
+
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(myInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(myInterceptor).addPathPatterns("/**").excludePathPatterns(excludePathPatternList);
     }
 
 

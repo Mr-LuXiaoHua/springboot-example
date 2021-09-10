@@ -8,12 +8,14 @@ public enum ResultEnum {
 
     SUCCESS(0, "success"),
 
-    SERVER_ERROR(5000, "系统错误"),
+
     PARAM_ERROR(4000, "请求参数错误"),
     REQUEST_BODY_IS_MISSING(4001, "请求体缺失"),
     DATA_IS_EXIST(4002, "数据已存在"),
     DATA_NOT_EXIST(4003, "数据不存在"),
+    UNAUTHORIZED(4004, "未被授权访问，请先登录"),
 
+    SERVER_ERROR(5000, "系统错误"),
 
     UNKNOWN_ERROR(9999, "未知错误")
     ;

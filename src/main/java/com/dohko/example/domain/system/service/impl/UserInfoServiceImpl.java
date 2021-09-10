@@ -2,6 +2,7 @@ package com.dohko.example.domain.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.dohko.example.domain.system.manager.UserSessionManager;
 import com.dohko.example.domain.system.repository.entity.UserInfo;
 import com.dohko.example.domain.system.repository.mapper.UserInfoMapper;
 import com.dohko.example.infrastructure.common.model.constant.WhetherConst;
@@ -34,6 +35,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Resource
     private UserInfoMapper userInfoMapper;
+
+    @Resource
+    private UserSessionManager userSessionManager;
 
     @Override
     public UserInfoBO getById(Long id) {
@@ -71,8 +75,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         checkPassword(loginReq.getPassword(), userInfo.getPassword(), userInfo.getSalt());
-
         UserInfoBO userInfoBO = BeanTools.copy(userInfo, UserInfoBO.class);
+        storeToSession(userInfoBO);
+
         return userInfoBO;
 
     }
@@ -153,6 +158,15 @@ public class UserInfoServiceImpl implements UserInfoService {
         if (!password.equals(realPassword)) {
             throw new UserInfoException(ResultEnum.DATA_NOT_EXIST.getCode(), "用户名或密码错误");
         }
+    }
+
+
+    /**
+     * 存储到session
+     * @param userInfoBO
+     */
+    private void storeToSession(UserInfoBO userInfoBO) {
+        userSessionManager.setToSession(userInfoBO.getId());
     }
 
 
